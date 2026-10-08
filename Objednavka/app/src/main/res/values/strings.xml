@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Objednavka</string>
+    <string name="textview_order_summary_text">Souhrn objednávky</string>
 </resources>

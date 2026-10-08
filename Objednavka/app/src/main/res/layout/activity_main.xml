@@ -1,19 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:padding="16dp"
+    >
+
 
     <TextView
+        android:id="@+id/tvHeaderTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Objednávka fyzické kopie"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_marginBottom="16dp"
+        />
+
+    <TextView
+        android:id="@+id/tvOrderTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Jakou verzi hry chcete koupit"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:layout_marginBottom="16dp"
+        />
+
+    <RadioGroup
+        android:id="@+id/rgGameVersion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="horizontal" >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <RadioButton
+            android:id="@+id/rbWotlk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wotlk"
+            android:checked="true"
+            />
+
+        <RadioButton
+            android:id="@+id/rbDragonFlight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DragonFlight"
+            />
+
+        <RadioButton
+            android:id="@+id/rbForever"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Forever"
+            />
+        </RadioGroup>
+
+        <CheckBox
+            android:id="@+id/cbDragon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ponořte se do světa draků" />
+
+
+        <CheckBox
+            android:id="@+id/cbNewClassic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nový classic" />
+
+        <CheckBox
+            android:id="@+id/cbWotlk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Poražte krále Lichů" />
+
+        <Button
+            android:id="@+id/btnOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Objednat" />
+
+        <TextView
+            android:id="@+id/tvOrder"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="@string/textview_order_summary_text"
+            android:background="#FDFD8A"
+            android:layout_marginTop="20dp"
+            android:padding="16dp"
+            />
+
+    <ImageView
+        android:id="@+id/ivGameVersionPick"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/wotlk_copy"
+        android:scaleType="fitCenter"
+
+        />
+
+</LinearLayout>
