@@ -1,6 +1,7 @@
 package com.example.objednavka
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -31,6 +32,18 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        binding.rbWotlk.setOnClickListener {
+            binding.ivGameVersionPick.setImageResource(R.drawable.wotlk_copy)
+        }
+
+        binding.rbForever.setOnClickListener {
+            binding.ivGameVersionPick.setImageResource(R.drawable.forever_copy)
+        }
+
+        binding.rbDragonFlight.setOnClickListener {
+            binding.ivGameVersionPick.setImageResource(R.drawable.dragonflight_copy)
+        }
+
         binding.btnOrder.setOnClickListener {
             val verzeHry = when(binding.rgGameVersion.checkedRadioButtonId){
                 binding.rbWotlk.id -> binding.rbWotlk //Pokud sedí ID prvního tlačítka, použij rbWotlk
@@ -39,33 +52,26 @@ class MainActivity : AppCompatActivity() {
 
                 else -> binding.rbWotlk //záložní možnost (fallback), kyby nebylo vybráno nic
             }
-            val Dragon = binding.cbDragon.isChecked
-            val Wotlk = binding.cbWotlk.isChecked
-            val Classic = binding.cbNewClassic.isChecked
+            val gametime = binding.cbGametime.isChecked
+            val mount = binding.cbMount.isChecked
+            val boost = binding.cbBoost.isChecked
 
 
-            val orderText = "Souhrn objednávky" + "${verzeHry.text}" +
-                    (if (Dragon) "; Nejnovější retail verze" else "") +
-                    (if (Wotlk) "; Chaos krále Lichů" else "") +
-                    (if (Classic) "; Classic plus" else "")
+            val orderText = "Souhrn objednávky " + "${verzeHry.text}" +
+                    (if (gametime) "+ Gametime navíc" else "") +
+                    (if (mount) "+ Sezónní mount" else "") +
+                    (if (boost) "+ Instantní catchup" else "")
 
             binding.tvOrder.text = orderText
 
             //změna obrázku v závislosti na vybraném radiobuttonu
 
-            binding.rbWotlk.setOnClickListener {
-                binding.ivGameVersionPick.setImageResource(R.drawable.wotlk_copy)
-            }
-
-            binding.rbForever.setOnClickListener {
-                binding.ivGameVersionPick.setImageResource(R.drawable.forever_copy)
-            }
-
-            binding.rbDragonFlight.setOnClickListener {
-                binding.ivGameVersionPick.setImageResource(R.drawable.dragonflight_copy)
-            }
 
 
+            Toast.makeText(
+                this,
+                "Objednávka verze hry ${verzeHry.text} byla úspěšně odeslána!", Toast.LENGTH_SHORT
+            ) .show()
 
         }
 

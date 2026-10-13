@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">Objednavka</string>
     <string name="textview_order_summary_text">Souhrn objednávky</string>
+    <string name="physical_copy_order">Objednávka fyzické kopie</string>
+    <string name="game_version_question">Jakou verzi hry chcete koupit</string>
+    <string name="wotlk_version">Wotlk</string>
+    <string name="dragonflight_version">DragonFlight</string>
+    <string name="forever_version">Forever</string>
+    <string name="month_of_gametime">1 měsíc Gametime na víc</string>
+    <string name="character_boost">Lvl 80 character boost</string>
+    <string name="premium_mount">Prémiový mount</string>
+    <string name="place_an_order">Objednat</string>
 </resources>

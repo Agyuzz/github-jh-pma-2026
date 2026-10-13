@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Objednavka</string>
+    <string name="textview_order_summary_text">Order Summary</string>
+    <string name="physical_copy_order">Order of the physical copy</string>
+    <string name="game_version_question">Which game version do you want to purchase</string>
+    <string name="wotlk_version">Wotlk</string>
+    <string name="dragonflight_version">DragonFlight</string>
+    <string name="forever_version">Forever</string>
+    <string name="month_of_gametime">1 month of Gametime</string>
+    <string name="character_boost">Lvl 80 character boost</string>
+    <string name="premium_mount">Premium mount</string>
+    <string name="place_an_order">Order</string>
+</resources>
