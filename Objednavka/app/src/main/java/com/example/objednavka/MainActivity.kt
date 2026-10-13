@@ -57,20 +57,19 @@ class MainActivity : AppCompatActivity() {
             val boost = binding.cbBoost.isChecked
 
 
-            val orderText = "Souhrn objednávky " + "${verzeHry.text}" +
-                    (if (gametime) "+ Gametime navíc" else "") +
-                    (if (mount) "+ Sezónní mount" else "") +
-                    (if (boost) "+ Instantní catchup" else "")
+            val orderText = getString(R.string.order_summary, verzeHry.text) +
+                    (if (gametime) " " + getString(R.string.extra_gametime) else "") +
+                    (if (mount) " " + getString(R.string.extra_mount) else "") +
+                    (if (boost) " " + getString(R.string.extra_boost) else "")
 
             binding.tvOrder.text = orderText
 
             //změna obrázku v závislosti na vybraném radiobuttonu
 
-
-
             Toast.makeText(
                 this,
-                "Objednávka verze hry ${verzeHry.text} byla úspěšně odeslána!", Toast.LENGTH_SHORT
+                getString(R.string.order_toast, verzeHry.text),
+                Toast.LENGTH_SHORT
             ) .show()
 
         }
