@@ -104,7 +104,15 @@
         android:layout_marginTop="20dp"
         android:src="@drawable/wotlk_copy"
         android:scaleType="fitCenter"
-
         />
 
+    <TextView
+        android:id="@+id/tvTotalPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/total_price"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="12dp"
+        />
 </LinearLayout>

@@ -56,6 +56,19 @@ class MainActivity : AppCompatActivity() {
             val mount = binding.cbMount.isChecked
             val boost = binding.cbBoost.isChecked
 
+            //základní cena podle vybrané verze hry
+            var totalPrice = when (verzeHry.id){
+                R.id.rbWotlk -> 600
+                R.id.rbDragonFlight ->1200
+                R.id.rbForever ->2000
+                else ->600
+            }
+            //příplatky
+            if (gametime) totalPrice +=300
+            if (mount) totalPrice +=500
+            if (boost) totalPrice +=1000
+
+            binding.tvTotalPrice.text = getString(R.string.order_total, totalPrice)
 
             val orderText = getString(R.string.order_summary, verzeHry.text) +
                     (if (gametime) " " + getString(R.string.extra_gametime) else "") +

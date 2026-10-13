@@ -16,5 +16,7 @@
     <string name="extra_mount">+ Seasonal mount</string>
     <string name="extra_boost">+ Instant catch-up</string>
     <string name="order_toast">Order of game version %s was submitted successfully!</string>
+    <string name="total_price">Total price: -</string>
+    <string name="order_total">Total price: %d CZK</string>
 
 </resources>

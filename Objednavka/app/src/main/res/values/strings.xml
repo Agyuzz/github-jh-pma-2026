@@ -15,4 +15,6 @@
     <string name="extra_mount">+ Sezónní mount</string>
     <string name="extra_boost">+ Instantní catchup</string>
     <string name="order_toast">Objednávka verze hry %s byla úspěšně odeslána!</string>
+    <string name="total_price">Celková cena: -</string>
+    <string name="order_total">Celková cena: %d Kč</string>
 </resources>
