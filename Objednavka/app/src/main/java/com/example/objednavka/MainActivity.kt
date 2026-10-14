@@ -68,7 +68,9 @@ class MainActivity : AppCompatActivity() {
             if (mount) totalPrice +=500
             if (boost) totalPrice +=1000
 
-            binding.tvTotalPrice.text = getString(R.string.order_total, totalPrice)
+            val formattedPrice = java.text.NumberFormat.getInstance().format(totalPrice)
+            binding.tvTotalPrice.text = getString(R.string.order_total, formattedPrice)
+           // binding.tvTotalPrice.text = getString(R.string.order_total, totalPrice)
 
             val orderText = getString(R.string.order_summary, verzeHry.text) +
                     (if (gametime) " " + getString(R.string.extra_gametime) else "") +
