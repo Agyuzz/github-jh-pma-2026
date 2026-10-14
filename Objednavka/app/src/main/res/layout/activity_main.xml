@@ -81,11 +81,26 @@
             android:layout_height="wrap_content"
             android:text="@string/premium_mount" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <Button
             android:id="@+id/btnOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/place_an_order" />
+            android:text="@string/place_an_order"
+            android:layout_marginEnd="12dp"
+            />
+
+        <Button
+            android:id="@+id/btnClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/clear_order"
+            />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvOrder"

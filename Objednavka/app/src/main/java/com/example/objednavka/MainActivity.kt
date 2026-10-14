@@ -86,6 +86,24 @@ class MainActivity : AppCompatActivity() {
             ) .show()
 
         }
+        binding.btnClear.setOnClickListener {
+            //vrácení výběru do výchozího stavu
+            binding.rbWotlk.isChecked = true
+            binding.cbGametime.isChecked=false
+            binding.cbBoost.isChecked=false
+            binding.cbMount.isChecked=false
+
+            //Vrácení obrázků a textů
+            binding.ivGameVersionPick.setImageResource(R.drawable.wotlk_copy)
+            binding.tvOrder.text = getString(R.string.textview_order_summary_text)
+            binding.tvTotalPrice.text = getString(R.string.total_price)
+
+            Toast.makeText(
+                this,
+                getString(R.string.order_cleared_toas),
+                Toast.LENGTH_SHORT
+            ) .show()
+        }
 
     }
 }
