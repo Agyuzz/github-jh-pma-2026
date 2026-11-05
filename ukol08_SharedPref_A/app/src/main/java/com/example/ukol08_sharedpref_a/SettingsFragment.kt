@@ -25,9 +25,38 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // logika TO-DO
+        //1) Získání sharedPreferences (vytvoří trezor s názvem GameProfile)
+        val sharedPref = requireActivity().getSharedPreferences("GameProfile", Context.MODE_PRIVATE)
 
 
+        //2) Načtení uložených dat ihned po otevření obrazovky (Výchozí hodnoty jsou prázdné)
+        val savedName = sharedPref.getString("NICKNAME","")
+        val isHardcore = sharedPref.getBoolean("HARDCORE", false)
+
+
+        //Propsání načtených dat
+        binding.etNickname.setText(savedName)
+        binding.switchHardcoreMode.isChecked = isHardcore
+
+        //3) Reakce na kliknutí tlačítka uložit
+        binding.btnSave.setOnClickListener {
+            val currentName = binding.etNickname.text.toString()
+            val currentHardcore = binding.switchHardcoreMode.isChecked
+
+            //příprava dat pro zápis
+            val editor = sharedPref.edit()
+            editor.putString("NICKNAME", currentName)
+            editor.putBoolean("HARDCORE", currentHardcore)
+
+            //uspání
+            Thread.sleep(5000)
+
+            //Skutečný synchronní zápis
+            editor.commit()
+
+            //zobrazení Toast notifikace
+            Toast.makeText(requireContext(), "Uloženo pomocí Shared Preferences principu", Toast.LENGTH_SHORT).show()
+        }
 
     }
 
