@@ -22,6 +22,26 @@
         <!-- Načítací kolečko je defaultně neviditelné -->
         <ProgressBar android:id="@+id/progressBar" android:visibility="invisible" android:layout_gravity="center" android:layout_height="wrap_content" android:layout_marginTop="32dp" android:layout_width="wrap_content"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Chyť a posouvej míček:"/>
+
+        <FrameLayout
+            android:id="@+id/playground"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginTop="8dp"
+            android:background="#EEEEEE">
+
+            <View
+                android:id="@+id/ball"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:background="@drawable/ball"/>
+        </FrameLayout>
+
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

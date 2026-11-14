@@ -1,8 +1,10 @@
 package com.example.ukol_08_preferences_b
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -38,8 +40,30 @@ class SettingsFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Míček, který jde táhnout prstem (nesouvisí s ukládáním)
+        var dX = 0f
+        var dY = 0f
+        binding.ball.setOnTouchListener { v, event ->
+            val parent = v.parent as View
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    dX = v.x - event.rawX
+                    dY = v.y - event.rawY
+                    true
+                }
+                MotionEvent.ACTION_MOVE -> {
+                    v.x = (event.rawX + dX).coerceIn(0f, (parent.width - v.width).toFloat())
+                    v.y = (event.rawY + dY).coerceIn(0f, (parent.height - v.height).toFloat())
+                    true
+                }
+                else -> false
+            }
+        }
+
 
         // 3. Načtení dat (Asynchronně přes Coroutines a Flow)
         viewLifecycleOwner.lifecycleScope.launch {
