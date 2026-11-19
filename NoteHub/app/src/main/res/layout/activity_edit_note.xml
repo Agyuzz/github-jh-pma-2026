@@ -12,6 +12,16 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!-- NOVÉ: needitovatelné pole s ID poznámky (TextView nejde psát jako EditText) -->
+        <TextView
+            android:id="@+id/tvNoteId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ID: -"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            android:layout_marginBottom="12dp" />
+
         <EditText
             android:id="@+id/etEditTitle"
             android:layout_width="match_parent"
@@ -28,6 +38,19 @@
             android:layout_marginTop="12dp"
             android:inputType="textMultiLine"
             />
+
+        <!-- NOVÉ (15.3): popisek a výběr priority -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Priorita" />
+
+        <Spinner
+            android:id="@+id/spinnerPriority"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/priority_names" />
 
         <Button
             android:id="@+id/btnSaveChanges"

@@ -31,6 +31,19 @@
             android:inputType="textMultiLine"
             android:layout_marginBottom="20dp" />
 
+        <!--popisek a výběr priority -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Priorita" />
+
+        <Spinner
+            android:id="@+id/spinnerPriority"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:entries="@array/priority_names" />
+
         <!-- Tlačítko pro uložení -->
         <Button
             android:id="@+id/btnSaveNote"

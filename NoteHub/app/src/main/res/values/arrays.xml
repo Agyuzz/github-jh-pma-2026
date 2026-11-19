@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Pořadí odpovídá hodnotě priority: 0 = Nízká, 1 = Střední, 2 = Vysoká -->
+    <string-array name="priority_names">
+        <item>Nízká</item>
+        <item>Střední</item>
+        <item>Vysoká</item>
+    </string-array>
+</resources>

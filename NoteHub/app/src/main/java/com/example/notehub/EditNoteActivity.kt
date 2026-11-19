@@ -31,6 +31,9 @@ class EditNoteActivity : AppCompatActivity() {
         // Získáme ID poznámky z Intentu
         noteId = intent.getIntExtra("note_id", -1)
 
+        //zobrazíme ID v TextView (binding.tvNoteId vznikne z android:id="@+id/tvNoteId")
+        binding.tvNoteId.text = "ID: $noteId"
+
         // Načteme poznámku z DB
         lifecycleScope.launch {
             noteDao.getAllNotes().collect { notes ->

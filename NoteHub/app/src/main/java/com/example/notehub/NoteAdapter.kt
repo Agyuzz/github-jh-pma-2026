@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.notehub.data.Note
 import com.example.notehub.databinding.ItemNoteBinding
 
-// DOPLNĚNO: callbacky pro editaci a mazání
+// callbacky pro editaci a mazání
 class NoteAdapter(
     private val onEditClick: (Note) -> Unit,
     private val onDeleteClick: (Note) -> Unit
@@ -14,6 +14,10 @@ class NoteAdapter(
 
     // Seznam poznámek, které se mají zobrazit
     private var notes: List<Note> = emptyList()
+
+    //textové názvy priorit; index v poli = hodnota priority v databázi
+    private val priorityNames = arrayOf("Nízká", "Střední", "Vysoká")
+
 
     // ViewHolder drží binding jednoho itemu (jedné poznámky)
     class NoteViewHolder(val binding: ItemNoteBinding) :
@@ -34,12 +38,18 @@ class NoteAdapter(
         holder.binding.tvNoteTitle.text = currentNote.title
         holder.binding.tvNoteContent.text = currentNote.content
 
-        // DOPLNĚNO: Kliknutí na EDIT ikonu
+        // převedeme číslo priority na text
+        // getOrElse ochrání před neplatnou hodnotou (mimo 0-2), místo pádu zobrazí "?"
+        val priorityText = priorityNames.getOrElse(currentNote.priority) { "?" }
+        holder.binding.tvNotePriority.text = "Priorita: $priorityText"
+
+
+        // Kliknutí na EDIT ikonu
         holder.binding.ivEdit.setOnClickListener {
             onEditClick(currentNote)
         }
 
-        // DOPLNĚNO: Kliknutí na DELETE ikonu
+        // Kliknutí na DELETE ikonu
         holder.binding.ivDelete.setOnClickListener {
             onDeleteClick(currentNote)
         }
