@@ -1,59 +1,87 @@
 package com.example.notehub
 
 
+
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.notehub.data.Note
+import com.example.notehub.data.NoteDao
 import com.example.notehub.data.NoteHubDatabaseInstance
 import com.example.notehub.databinding.ActivityMainBinding
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
-z
+
     private lateinit var binding: ActivityMainBinding
+    private lateinit var noteDao: NoteDao
+    private lateinit var adapter: NoteAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //setContentView(R.layout.activity_main)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Po kliknutí na FAB otevře AddNoteActivity
         binding.fabAddNote.setOnClickListener {
             val intent = Intent(this, AddNoteActivity::class.java)
             startActivity(intent)
         }
 
+        // DAO
+        noteDao = NoteHubDatabaseInstance.getDatabase(applicationContext).noteDao()
 
-        /* Zobrazování poznámek */
+        // Adapter s callbacky
+        adapter = NoteAdapter(
+            onEditClick = { note ->
+                val intent = Intent(this, EditNoteActivity::class.java)
+                intent.putExtra("note_id", note.id)
+                startActivity(intent)
+            },
+            onDeleteClick = { note ->
+                showDeleteConfirmationDialog(note)
+            }
+        )
 
-        // 1) Vytvoření adaptéru
-        val adapter = NoteAdapter()
-
-        // 2) Nastavení RecyclerView
+        // RecyclerView
         binding.recyclerViewNotes.layoutManager = LinearLayoutManager(this)
         binding.recyclerViewNotes.adapter = adapter
 
-        // 3) Získání DAO
-        val noteDao = NoteHubDatabaseInstance.getDatabase(applicationContext).noteDao()
-
-        // 4) Pozorování dat pomocí Flow z Room
-        // Spustí korutinu v rámci životního cyklu aktivity.
-        // Když se aktivita zničí, korutina se automaticky ukončí.
+        // Flow
         lifecycleScope.launch {
-            // Sleduje Flow. Kdykoli se změní data v DB → seznam se okamžitě obnoví.
             noteDao.getAllNotes().collectLatest { notes ->
-                //Pošle nová data do adapteru, aby se překreslil RecyclerView.
                 adapter.submitList(notes)
             }
+        }
+    }
+    //Potvrzovací dialog při mazání poznámky.
+    private fun showDeleteConfirmationDialog(note: Note){
+        AlertDialog.Builder(this)
+            .setMessage ("Opravdu chcete smazat tuto poznámku?") //Text dialogu
+            .setPositiveButton("Ano") { _, _ ->
+                // ANO -> provedeme skutečné smazání (v IO vlákně, viz deleteNote)
+                deleteNote(note)
+            }
+            .setNegativeButton("NE") { dialog, _ ->
+                // NE -> jen zavřeme dialog, nic dalšího neděláme
+                dialog.dismiss()
+            }
+            .show() // zobrazí dialog
+    }
+
+    private fun deleteNote(note: Note) {
+        // spustí se asynchronní úkol na vlákně určeném pro práci s databází
+        // a ukončí se automaticky, když se aktivita zničí
+        lifecycleScope.launch(Dispatchers.IO) {
+            noteDao.delete(note)
         }
     }
 }
