@@ -44,6 +44,28 @@
             android:layout_marginBottom="20dp"
             android:entries="@array/priority_names" />
 
+        <!-- NOVÉ: kategorie -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kategorie" />
+
+        <Spinner
+            android:id="@+id/spinnerCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:entries="@array/category_names" />
+
+        <!-- datum vytvoření, jen informativně -->
+        <TextView
+            android:id="@+id/textCreatedAtInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vytvořeno: ---"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginBottom="20dp" />
+
         <!-- Tlačítko pro uložení -->
         <Button
             android:id="@+id/btnSaveNote"

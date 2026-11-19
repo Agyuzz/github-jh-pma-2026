@@ -41,6 +41,14 @@
             android:text="Priorita: Nízká"
             android:textSize="12sp"
             android:textStyle="italic" />
+        <!-- kategorie a datum vytvoření -->
+        <TextView
+            android:id="@+id/tvNoteMeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="General • 1. 1. 2026 12:00"
+            android:textSize="12sp" />
     </LinearLayout>
 
     <!-- EDIT icon -->

@@ -6,4 +6,13 @@
         <item>Střední</item>
         <item>Vysoká</item>
     </string-array>
+
+    <!-- Kategorie; do databáze se ukládá přímo tento text.
+         "General" musí zůstat první, je to výchozí hodnota v entitě i migraci -->
+    <string-array name="category_names">
+        <item>General</item>
+        <item>Škola</item>
+        <item>Práce</item>
+        <item>Osobní</item>
+    </string-array>
 </resources>

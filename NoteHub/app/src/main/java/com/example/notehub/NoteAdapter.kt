@@ -5,6 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.notehub.data.Note
 import com.example.notehub.databinding.ItemNoteBinding
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 // callbacky pro editaci a mazání
 class NoteAdapter(
@@ -18,6 +21,7 @@ class NoteAdapter(
     //textové názvy priorit; index v poli = hodnota priority v databázi
     private val priorityNames = arrayOf("Nízká", "Střední", "Vysoká")
 
+    private val dateFormat = SimpleDateFormat("d. M. yyyy HH:mm", Locale.getDefault())
 
     // ViewHolder drží binding jednoho itemu (jedné poznámky)
     class NoteViewHolder(val binding: ItemNoteBinding) :
@@ -42,6 +46,13 @@ class NoteAdapter(
         // getOrElse ochrání před neplatnou hodnotou (mimo 0-2), místo pádu zobrazí "?"
         val priorityText = priorityNames.getOrElse(currentNote.priority) { "?" }
         holder.binding.tvNotePriority.text = "Priorita: $priorityText"
+
+        val dateText = if (currentNote.createdAt == 0L) {
+            "datum neznámé"
+        } else {
+            dateFormat.format(Date(currentNote.createdAt))
+        }
+        holder.binding.tvNoteMeta.text = "${currentNote.category} • $dateText"
 
 
         // Kliknutí na EDIT ikonu

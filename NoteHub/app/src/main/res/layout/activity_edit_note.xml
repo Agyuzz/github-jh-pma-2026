@@ -52,6 +52,19 @@
             android:layout_height="wrap_content"
             android:entries="@array/priority_names" />
 
+        <!-- NOVÉ: kategorie -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Kategorie" />
+
+        <Spinner
+            android:id="@+id/spinnerCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/category_names" />
+
         <Button
             android:id="@+id/btnSaveChanges"
             android:layout_width="match_parent"
